@@ -122,9 +122,7 @@ end
 
 ```julia
 function βbattleground(x::Array{Float64,2}, y::Vector{Int64}, splitα::Float64, mi::Int64, mp::Int64, k::String, c::Float64, γ::Float64)
-    """
-    implementation of the One vs One strategy in order to use SVM in multi classification
-    """
+
     n = length(unique(y))
     labels = [i for i in unique(y)]
     binaries = combinations(1:n, 2)
