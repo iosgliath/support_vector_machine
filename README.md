@@ -44,6 +44,11 @@ models = gridSearch(xx, yy, 0.5, 1000, 1000, "rbf")
 ```
 
 <strong>Classification results on random clusterised data points :</strong>
+
+Blue = error on testing data<br/>
+White markers = training data<br/>
+Orange = training data<br/>
+
 ![image info](./testing_errors.png)<br/>
 
 <strong>How it works :</strong></br>
