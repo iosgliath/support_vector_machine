@@ -16,7 +16,7 @@ If you aren't expert in lagrangian arithmetics (I'm not), this is a great ressou
 ```julia
 # xx are our features, yy our labels
 
-# β = svm(x_train, y_train, max_iter, max_passes, kernel, c, γ)
+# β = binaryβ(x::Array{Float64,2}, y::Vector{Int64}, classpos::Int64, classneg::Int64, splitα::Float64, mi::Int64, mp::Int64, k::String, c::Float64, γ::Float64)
 
 # xtrain = training features
 # ytrain = training labels
