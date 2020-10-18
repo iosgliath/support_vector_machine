@@ -84,6 +84,9 @@ accu = computeAccuracy(predictions, y_test)
 ```
 
 <strong>3. Grid search</strong>
+
+Find best hyper params (c, γ) combination from range.</br>
+
 ```julia
 # xx are our features, yy our labels
 
