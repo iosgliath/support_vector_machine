@@ -11,13 +11,13 @@ If your not an expert in lagrangian arithmetics (I'm not), this is a great resso
  
 <strong>How to use :</strong></br>
 
-1. Binary classification
+<strong>1. Binary classification</strong>
 ```julia
 # xx are our features, yy our labels
 
 binaryModel = binaryβ(xx, yy, 1, -1, 0.5, 1000, 1000, "rbf", 0.6, 0.1)
 ```
-2. Multi class classification
+<strong>2. Multi class classification</strong>
 ```julia
 iris = dataset("datasets", "iris")
 
@@ -32,7 +32,7 @@ predictions = kaloskagathing(models, x_test, labels) # check our prediction on x
 accu = computeAccuracy(predictions, y_test)
 
 ```
-3. Grid search
+<strong>3. Grid search</strong>
 ```julia
 # xx are our features, yy our labels
 
@@ -44,7 +44,7 @@ models = gridSearch(xx, yy, 0.5, 1000, 1000, "rbf")
 
 <strong>How it works :</strong></br>
 
-1. Sequential minimal optimization</br>
+<strong>1. Sequential minimal optimization</br></strong>
 http://cs229.stanford.edu/materials/smo.pdf
 
 ```julia
@@ -118,7 +118,7 @@ function smo!(β::SVM)
     end
 end
 ```
-2. One Vs One strategy for multi classification</br>
+<strong>2. One Vs One strategy for multi classification</br></strong>
 
 ```julia
 function βbattleground(x::Array{Float64,2}, y::Vector{Int64}, splitα::Float64, mi::Int64, mp::Int64, k::String, c::Float64, γ::Float64)
@@ -149,7 +149,7 @@ function βbattleground(x::Array{Float64,2}, y::Vector{Int64}, splitα::Float64,
     return βs, labels
 end
 ```
-3. Multi class voting: the binary matchup with the most votes wins</br>
+<strong>3. Multi class voting: the binary matchup with the most votes wins</br></strong>
 
     'Kalos kagathos or kalokagathos (Ancient Greek: καλὸς κἀγαθός [kalòs kaːɡatʰós]),
     of which kalokagathia (καλοκαγαθία) is the derived noun, is a phrase used
