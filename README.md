@@ -21,7 +21,7 @@ If you aren't expert in lagrangian arithmetics (I'm not), this is a great ressou
 # y = training labels
 # classpos = used for multi class. Use 1
 # classneg = used for multi class. Use -1
-# splitα = ratio of training / (training + testing)
+# splitα =  Ntraining / (Ntraining + Ntesting) -> use to set how many training samples you want to feed the model with
 # mi = max iteration for smo
 # mp = max smo loop without change to tolerance
 # k = kernel type. For now, only "rbf" (radial basis function kernel)
