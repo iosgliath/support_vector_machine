@@ -45,6 +45,43 @@ predictions = kaloskagathing(models, x_test, labels) # check our prediction on x
 accu = computeAccuracy(predictions, y_test)
 
 ```
+
+Using some dataset from kaggle :</br>
+https://www.kaggle.com/ronitf/heart-disease-uci</br>
+
+```julia
+pwd()
+cd()
+cd("your file path")
+kaggle_file = "heart.csv"
+
+
+function loadNpreprocess()
+    data = CSV.File(kaggle_file) |> DataFrame
+    x = convert(Array{Float64,2}, data[:,1:13])
+    y = vec(data[:,14])
+    replace!(y, 0 => -1)
+    return x, y
+end
+
+# get features and labels
+xx, yy = loadNpreprocess()
+
+# try the classifier with and without normalisation and see results
+#
+# xx[:,1] = normalise(xx[:,1])
+# xx[:,4] = normalise(xx[:,4])
+# xx[:,5] = normalise(xx[:,5])
+# xx[:,8] = normalise(xx[:,8])
+#
+
+# feed features and labels into binary classifier
+binaryModel = binaryβ(xx, yy, 1, -1, 0.5, 1000, 1000, "rbf", 0.6, 0.1)
+print(binaryModel.accuracy)
+
+
+```
+
 <strong>3. Grid search</strong>
 ```julia
 # xx are our features, yy our labels
