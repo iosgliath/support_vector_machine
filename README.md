@@ -18,11 +18,14 @@ If you aren't expert in lagrangian arithmetics (I'm not), this is a great ressou
 
 # β = binaryβ(x::Array{Float64,2}, y::Vector{Int64}, classpos::Int64, classneg::Int64, splitα::Float64, mi::Int64, mp::Int64, k::String, c::Float64, γ::Float64)
 
-# xtrain = training features
-# ytrain = training labels
-# max_iter = max iteration for smo
-# max_passes = max smo loop without change to tolerance
-# kenerl = kernel type. For now, only "rbf" (radial basis function kernel)
+# x = training features
+# y = training labels
+# classpos = used for multi class. Use 1
+# classneg = used for multi class. Use -1
+# splitα = ratio of training / (training + testing)
+# mi = max iteration for smo
+# mp = max smo loop without change to tolerance
+# k = kernel type. For now, only "rbf" (radial basis function kernel)
 # c = regularization parameter
 # γ = RBF kernel parameter
 
