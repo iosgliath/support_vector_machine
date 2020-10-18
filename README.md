@@ -16,6 +16,16 @@ If you aren't expert in lagrangian arithmetics (I'm not), this is a great ressou
 ```julia
 # xx are our features, yy our labels
 
+# β = svm(x_train, y_train, max_iter, max_passes, kernel, c, γ)
+
+# xtrain = training features
+# ytrain = training labels
+# max_iter = max iteration for smo
+# max_passes = max smo loop without change to tolerance
+# kenerl = kernel type. For now, only "rbf" (radial basis function kernel)
+# c = regularization parameter
+# γ = RBF kernel parameter
+
 binaryModel = binaryβ(xx, yy, 1, -1, 0.5, 1000, 1000, "rbf", 0.6, 0.1)
 ```
 <strong>2. Multi class classification</strong>
