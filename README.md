@@ -6,7 +6,7 @@ Only radial basis function kernel for now.</br>
 
 Goal is to implement in as pure Julia possible. </br>
 
-If your not an expert in lagrangian arithmetics (I'm not), this is a great ressource to get started with SMO.</br>
+If you aren't expert in lagrangian arithmetics (I'm not), this is a great ressource to get started with SMO.</br>
  http://cs229.stanford.edu/materials/smo.pdf
  
  
