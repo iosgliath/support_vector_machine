@@ -8,6 +8,10 @@ If your not an expert in lagrangian arithmetics (I'm not), this is a great resso
  http://cs229.stanford.edu/materials/smo.pdf
  
  
-<bold>How to use :</bold></br>
+<strong>How to use :</strong></br>
+
+'''julia
+function()
+'''
 
 
