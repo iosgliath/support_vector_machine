@@ -30,21 +30,6 @@ If you aren't expert in lagrangian arithmetics (I'm not), this is a great ressou
 
 binaryModel = binaryβ(xx, yy, 1, -1, 0.5, 1000, 1000, "rbf", 0.6, 0.1)
 ```
-<strong>2. Multi class classification</strong>
-```julia
-iris = dataset("datasets", "iris")
-
-mapping = multiClassPreprocess(iris) # some pre processing to data
-y = vec(convert(Array, mapping[:,1])) # get labels
-x = convert(Array, mapping[:,2:5]) # get features
-x_train, y_train, x_test, y_test = splitTestTrain(x, y, 0.5) # split first time for fresh unseen data
-
-models, labels = βbattleground(x_train, y_train, 0.9, 1000, 1000, "rbf", 0.6, 0.001) # feed xtrain into one vs one method
-print(labels) # check our labels
-predictions = kaloskagathing(models, x_test, labels) # check our prediction on xtest
-accu = computeAccuracy(predictions, y_test)
-
-```
 
 Using some dataset from kaggle :</br>
 https://www.kaggle.com/ronitf/heart-disease-uci</br>
@@ -79,6 +64,22 @@ xx, yy = loadNpreprocess()
 binaryModel = binaryβ(xx, yy, 1, -1, 0.5, 1000, 1000, "rbf", 0.6, 0.1)
 print(binaryModel.accuracy)
 
+
+```
+
+<strong>2. Multi class classification</strong>
+```julia
+iris = dataset("datasets", "iris")
+
+mapping = multiClassPreprocess(iris) # some pre processing to data
+y = vec(convert(Array, mapping[:,1])) # get labels
+x = convert(Array, mapping[:,2:5]) # get features
+x_train, y_train, x_test, y_test = splitTestTrain(x, y, 0.5) # split first time for fresh unseen data
+
+models, labels = βbattleground(x_train, y_train, 0.9, 1000, 1000, "rbf", 0.6, 0.001) # feed xtrain into one vs one method
+print(labels) # check our labels
+predictions = kaloskagathing(models, x_test, labels) # check our prediction on xtest
+accu = computeAccuracy(predictions, y_test)
 
 ```
 
