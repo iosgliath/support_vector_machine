@@ -23,7 +23,7 @@ If you aren't expert in lagrangian arithmetics (I'm not), this is a great ressou
 # classneg = used for multi class. Use -1
 # splitα =  Ntraining / (Ntraining + Ntesting) -> use to set how many training samples you want to feed the model with
 # mi = max iteration for smo
-# mp = max smo loop without change to tolerance
+# mp = max smo loops without change to tolerance
 # k = kernel type. For now, only "rbf" (radial basis function kernel)
 # c = regularization parameter
 # γ = RBF kernel parameter
