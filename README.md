@@ -11,8 +11,4 @@ The core of the process is happening in this function :</br>
 
 ```julia
 function smo!(β::SVM)
-.
-.
-.
-end
 ```
