@@ -349,29 +349,83 @@ function irisPreprocess(mapping::DataFrame)
 end
 
 using RDatasets
-
+# load iris dataset
 iris = dataset("datasets", "iris")
 
+# geat features and labels
 mapping = irisPreprocess(iris)
 y = vec(convert(Array, mapping[:,1]))
 x = convert(Array, mapping[:,2:5])
-x_train, y_train, x_test, y_test = splitTestTrain(x, y, 0.5)
 
-models, classIdx = βbattleground(x_train, y_train, 0.9, 1000, 1000, "rbf", 0.6, 0.001)
-print(classIdx)
+# split a first time in training and testing with split value 0.7 (keep 30% for testing)
+x_train, y_train, x_test, y_test = splitTestTrain(x, y, 0.7)
+
+# feed training into One Vs One process.
+# each binary classifier will get samples from xtrain to pick from with split value 0.7
+models, labels = βbattleground(x_train, y_train, 0.7, 1000, 1000, "rbf", 10.0, 0.01)
+# print our labels
+print(labels)
+
+# now let's test our model against the initial test set
 predictions = kaloskagathing(models, x_test, classIdx)
 accu = computeAccuracy(predictions, y_test)
 
 ##################################
 
 
+"""
+Now let's use some dataset from kaggle
+https://www.kaggle.com/ronitf/heart-disease-uci
+"""
+pwd()
+cd()
+cd("your file path")
+kaggle_file = "heart.csv"
 
 
+function loadNpreprocess()
+    data = CSV.File(kaggle_file) |> DataFrame
+    x = convert(Array{Float64,2}, data[:,1:13])
+    y = vec(data[:,14])
+    replace!(y, 0 => -1)
+    return x, y
+end
 
+# get features and labels
+xx, yy = loadNpreprocess()
+
+# try the classifier with and without normalisation and see results
+#
+# xx[:,1] = normalise(xx[:,1])
+# xx[:,4] = normalise(xx[:,4])
+# xx[:,5] = normalise(xx[:,5])
+# xx[:,8] = normalise(xx[:,8])
+#
+
+# feed features and labels into binary classifier
+binaryModel = binaryβ(xx, yy, 1, -1, 0.5, 1000, 1000, "rbf", 0.6, 0.1)
+print(binaryModel.accuracy)
+
+# now let's try and find better params with grid search
+models = gridSearch(xx, yy, 0.5, 1000, 1000, "rbf")
+
+
+########################
+
+"""
+
+This part is more visual, using Distirbutions.jl to generate points
+in 2 and 3 dimensional spaces and testing the classifier on them
+
+"""
 using Distributions
 
 
 function generateRandomDataN(points::Int64)
+    
+    """
+    I tried around messing with several point distributions, hence this corky setup
+    """
     d1x = Normal(2, 1.5)
     d1y = Normal(2, 1)
     d2x = Normal(8, 1)
@@ -388,8 +442,6 @@ function generateRandomDataN(points::Int64)
     cluster3y = rand(d3y, points)
     cluster4x = rand(d4x, points)
     cluster4y = rand(d4y, points)
-    #pointsx = vcat(cluster1x, cluster2x)
-    #pointsy = vcat(cluster1y, cluster2y)
     return cluster1x, cluster1y, cluster2x, cluster2y, cluster3x, cluster3y, cluster4x, cluster4y
 end
 
@@ -431,46 +483,6 @@ plotModel2D(cluster1x, cluster1y, cluster2x, cluster2y, cluster3x, cluster3y, cl
 
 
 #####################################
-"""
-data from
-https://www.kaggle.com/ronitf/heart-disease-uci
-"""
-pwd()
-cd()
-cd("your file path")
-kaggle_file = "heart.csv"
-
-
-function loadNpreprocess()
-    data = CSV.File(kaggle_file) |> DataFrame
-    m = skipmissing(data)
-    x = convert(Array{Float64,2}, data[:,1:13])
-    y = vec(data[:,14])
-    replace!(y, 0 => -1)
-    # encode diagnosis to 1 or -1 vector
-    # dict = Dict([ "M" => 1, "B" => -1 ])
-    # f = getindex.(Ref(dict), data.diagnosis)
-    # # remove useless col: first and last + diagnosis
-    # select!(data, Not([:id,:Column33, :diagnosis]))
-    # data = normalise(data)
-    # insert!(data, 1, f, :diagnosis)
-    return x, y, m
-end
-
-
-xx, yy, m = loadNpreprocess()
-
-# try the classifier with and without normalisation and see results
-#
-# xx[:,1] = normalise(xx[:,1])
-# xx[:,4] = normalise(xx[:,4])
-# xx[:,5] = normalise(xx[:,5])
-# xx[:,8] = normalise(xx[:,8])
-#
-
-binaryModel = binaryβ(xx, yy, 1, -1, 0.5, 1000, 1000, "rbf", 0.6, 0.1)
-print(binaryModel.accuracy)
-models = gridSearch(xx, yy, 0.5, 1000, 1000, "rbf")
 
 
 
@@ -529,7 +541,7 @@ predictions = kaloskagathing(models, x_test, classIdx)
 acc = computeAccuracy(predictions, y_test)
 
 
-function plotModel(cluster1x, cluster1y, cluster1z, cluster2x, cluster2y, cluster2z, cluster3x, cluster3y, cluster3z, cluster4x, cluster4y, cluster4z, x_test, predictions, y_test)
+function plotModel3D(cluster1x, cluster1y, cluster1z, cluster2x, cluster2y, cluster2z, cluster3x, cluster3y, cluster3z, cluster4x, cluster4y, cluster4z, x_test, predictions, y_test)
     error = predictions .== y_test
 
     data = hcat(x_test, error)
@@ -548,5 +560,5 @@ function plotModel(cluster1x, cluster1y, cluster1z, cluster2x, cluster2y, cluste
     )
     scatter!(vcat(cluster1x, cluster2x, cluster3x, cluster4x), vcat(cluster1y, cluster2y, cluster3y, cluster4y), vcat(cluster1z, cluster2z, cluster3z, cluster4z), markercolor="white", markersize=0.1)
 end
-plotModel(cluster1x, cluster1y, cluster1z, cluster2x, cluster2y, cluster2z, cluster3x, cluster3y, cluster3z, cluster4x, cluster4y, cluster4z, x_test, predictions, y_test)
+plotModel3D(cluster1x, cluster1y, cluster1z, cluster2x, cluster2y, cluster2z, cluster3x, cluster3y, cluster3z, cluster4x, cluster4y, cluster4z, x_test, predictions, y_test)
 
