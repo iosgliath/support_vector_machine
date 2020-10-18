@@ -189,7 +189,6 @@ end
 function predict(x::Vector{Float64}, β::SVM)
     k = kernel(β.x, x, β)
     return sign(k' * (β.α .* β.y) + β.b)
-    #return sign(k' * (β.α .* β.y) + β.b)[1]
 end
 
 function predict(x::Array{Float64, 2}, β::SVM)
