@@ -43,6 +43,9 @@ models = gridSearch(xx, yy, 0.5, 1000, 1000, "rbf")
 
 ```
 
+<strong>Classification results on random clusterised data points :</strong>
+![image info](./test_errors.png)<br/>
+
 <strong>How it works :</strong></br>
 
 <strong>1. Sequential minimal optimization</br></strong>
