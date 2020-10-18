@@ -367,7 +367,7 @@ models, labels = βbattleground(x_train, y_train, 0.7, 1000, 1000, "rbf", 10.0, 
 print(labels)
 
 # now let's test our model against the initial test set
-predictions = kaloskagathing(models, x_test, classIdx)
+predictions = kaloskagathing(models, x_test, labels)
 accu = computeAccuracy(predictions, y_test)
 
 ##################################
