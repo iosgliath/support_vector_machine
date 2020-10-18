@@ -14,7 +14,6 @@ If you aren't expert in lagrangian arithmetics (I'm not), this is a great ressou
 
 <strong>1. Binary classification</strong>
 ```julia
-# xx are our features, yy our labels ( 1 or -1 )
 
 # β = binaryβ(x::Array{Float64,2}, y::Vector{Int64}, classpos::Int64, classneg::Int64, splitα::Float64, mi::Int64, mp::Int64, k::String, c::Float64, γ::Float64)
 
