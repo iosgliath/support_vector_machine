@@ -10,8 +10,28 @@ If your not an expert in lagrangian arithmetics (I'm not), this is a great resso
  
 <strong>How to use :</strong></br>
 
-'''julia
-function()
-'''
-
+1. Binary classification
+```julia
+function fancyAlert(arg) {
+  if(arg) {
+    $.facebox({div:'#foo'})
+  }
+}
+```
+2. Multi class classification
+```julia
+function fancyAlert(arg) {
+  if(arg) {
+    $.facebox({div:'#foo'})
+  }
+}
+```
+3. Grid search
+```julia
+function fancyAlert(arg) {
+  if(arg) {
+    $.facebox({div:'#foo'})
+  }
+}
+```
 
