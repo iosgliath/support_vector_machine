@@ -158,7 +158,12 @@ function βbattleground(x::Array{Float64,2}, y::Vector{Int64}, splitα::Float64,
     return βs, labels
 end
 ```
-<strong>3. Multi class voting following One Vs One strategy: the class with the most votes wins</br></strong>
+<strong>3. Multi class voting following One Vs One strategy: </br></strong>
+
+Converts the multi classification task into several binary classifications ones.</br>
+There are n * (n - 1) / 2 binary matchups for n labels.</br>
+The class with the most votes wins.</br>
+
 
     'Kalos kagathos or kalokagathos (Ancient Greek: καλὸς κἀγαθός [kalòs kaːɡatʰós]),
     of which kalokagathia (καλοκαγαθία) is the derived noun, is a phrase used
