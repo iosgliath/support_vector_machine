@@ -44,7 +44,7 @@ function svm(
     n = size(x, 1)
     α = zeros(n)
     k = zeros(n, n)
-    sv_pos = collect(1:n) # = undef vector?
+    sv_pos = collect(1:n)
 
     return SVM(x, y, c, tol, max_iter, max_passes, kernel, degree, γ, α, b, sv_pos, k)
 end
