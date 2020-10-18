@@ -303,7 +303,7 @@ end
 
 function gridSearch(x::Array{Float64,2}, y::Vector{Int64}, splitα::Float64, mi::Int64, mp::Int64, k::String)
 
-    crange = [ 2^-1000, 2^-100, 2^-10, 2^-1, 2, 10, 100, 2^10]
+    crange = [ 2*10^-4, 2*10^-2, 2*10^-1, 2^-1, 2, 10, 100, 2*10^2, 2*10^2]
     γrange = [ 0.00001, 0.0001, 0.001, 0.01, 0.1, 1.0]
 
     βs = Array{BinaryModel, 1}(undef, length(crange)*length(γrange))
