@@ -475,8 +475,8 @@ y = vcat(ones(Int64, 1000)*1, ones(Int64, 1000)*2, ones(Int64, 1000)*3, ones(Int
 
 x_train, y_train, x_test, y_test = splitTestTrain(x, y, 0.5)
 
-models, classIdx = βbattleground(x_train, y_train, 0.9, 1000, 1000, "rbf", 0.6, 0.001)
-predictions = kaloskagathing(models, x_test, classIdx)
+models, labels = βbattleground(x_train, y_train, 0.9, 1000, 1000, "rbf", 0.6, 0.001)
+predictions = kaloskagathing(models, x_test, labels)
 acc = computeAccuracy(predictions, y_test)
 
 plotModel2D(cluster1x, cluster1y, cluster2x, cluster2y, cluster3x, cluster3y, cluster4x, cluster4y, x_test, predictions, y_test)
@@ -536,8 +536,8 @@ y = vcat(ones(Int64, 1000)*1, ones(Int64, 1000)*2, ones(Int64, 1000)*3, ones(Int
 x_train, y_train, x_test, y_test = splitTestTrain(x, y, 0.8)
 
 #nclass = length(unique(y))
-models, classIdx = βbattleground(x_train, y_train, 0.4, 1000, 1000, "rbf", 0.6, 0.001)
-predictions = kaloskagathing(models, x_test, classIdx)
+models, labels = βbattleground(x_train, y_train, 0.4, 1000, 1000, "rbf", 0.6, 0.001)
+predictions = kaloskagathing(models, x_test, labels)
 acc = computeAccuracy(predictions, y_test)
 
 
