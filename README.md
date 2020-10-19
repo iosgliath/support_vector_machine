@@ -226,8 +226,8 @@ The class with the most votes wins.</br>
     'Kalos kagathos or kalokagathos (Ancient Greek: καλὸς κἀγαθός [kalòs kaːɡatʰós]),
     of which kalokagathia (καλοκαγαθία) is the derived noun, is a phrase used
     by classical Greek writers to describe an ideal of gentlemanly personal conduct,
-    especially in a military context.'</br>
-    https://en.wikipedia.org/wiki/Kalos_kagathos</br>
+    especially in a military context.'
+  https://en.wikipedia.org/wiki/Kalos_kagathos</br>
         
 
 ```julia
