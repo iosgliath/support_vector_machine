@@ -18,26 +18,6 @@ end
 
 mutable struct BinaryModel
     x_train::Array{Float64,2}
-    y_train::Vector{Int64}using CSV, DataFrames, LinearAlgebra, Distributions, Random, StatsBase, Plots, Combinatorics
-
-mutable struct SVM
-    x::Matrix
-    y::Vector
-    c::Float64
-    tol::Float64
-    max_iter::Integer
-    max_passes::Integer
-    kernel::String
-    degree::Integer
-    γ::Float64
-    α::Vector
-    b::Float64
-    sv_pos::Vector
-    k::Matrix
-end
-
-mutable struct BinaryModel
-    x_train::Array{Float64,2}
     y_train::Vector{Int64}
     x_test::Array{Float64,2}
     y_test::Vector{Int64}
@@ -841,25 +821,25 @@ function kaloskagathing(βs::Array{BinaryModel, 1}, x_test::Array{Float64, 2}, c
     especially in a military context.'
     https://en.wikipedia.org/wiki/Kalos_kagathos
     """
-    kalokagathos = Array{Int64, 2}(undef, size(x_test, 1), length(βs))
+    kaloskagathos = Array{Int64, 2}(undef, size(x_test, 1), length(βs))
 
     for i in 1:length(βs)
         p = predict(x_test, βs[i].β)
 
         replace!(p, 1 => βs[i].classpos)
         replace!(p, -1 => βs[i].classneg)
-        kalokagathos[:,i] = p
+        kaloskagathos[:,i] = p
     end
 
-    kalokagathos = mapslices(x->countmemb(x), kalokagathos, dims=2)
+    kaloskagathos = mapslices(x->countmemb(x), kaloskagathos, dims=2)
 
-    kalokagathos = findmax.(kalokagathos)
+    kaloskagathos = findmax.(kaloskagathos)
 
-    kalokagathos = [(kalokagathos...)...]
+    kaloskagathos = [(kaloskagathos...)...]
 
-    i = 2:2:length(kalokagathos)
+    i = 2:2:length(kaloskagathos)
 
-    return kalokagathos[i]
+    return kaloskagathos[i]
 end
 
 
