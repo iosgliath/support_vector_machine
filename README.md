@@ -29,6 +29,9 @@ If you aren't expert in lagrangian arithmetics (I'm not), this is a great ressou
 # γ = RBF kernel parameter
 
 binaryModel = binaryβ(xx, yy, 1, -1, 0.5, 1000, 1000, "rbf", 0.6, 0.1)
+
+# try the model on new feature samples ( myfeatures )
+predictions = predict(myfeatures, binaryModel.β)
 ```
 
 Using some dataset from kaggle :</br>
