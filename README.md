@@ -232,25 +232,26 @@ The class with the most votes wins.</br>
 
 ```julia
 function kaloskagathing(βs::Array{BinaryModel, 1}, x_test::Array{Float64, 2}, classIdx::Array{Int64, 1})
-    kalokagathos = Array{Int64, 2}(undef, size(x_test, 1), length(βs))
+
+    kaloskagathos = Array{Int64, 2}(undef, size(x_test, 1), length(βs))
 
     for i in 1:length(βs)
         p = predict(x_test, βs[i].β)
 
         replace!(p, 1 => βs[i].classpos)
         replace!(p, -1 => βs[i].classneg)
-        kalokagathos[:,i] = p
+        kaloskagathos[:,i] = p
     end
 
-    kalokagathos = mapslices(x->countmemb(x), kalokagathos, dims=2)
+    kaloskagathos = mapslices(x->countmemb(x), kaloskagathos, dims=2)
 
-    kalokagathos = findmax.(kalokagathos)
+    kaloskagathos = findmax.(kaloskagathos)
 
-    kalokagathos = [(kalokagathos...)...]
+    kaloskagathos = [(kaloskagathos...)...]
 
-    i = 2:2:length(kalokagathos)
+    i = 2:2:length(kaloskagathos)
 
-    return kalokagathos[i]
+    return kaloskagathos[i]
 end
 ```
 
